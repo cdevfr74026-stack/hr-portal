@@ -48,6 +48,9 @@ const Render = (() => {
         <div class="sidebar-nav-divider"></div>
         ${links}
       </nav>
+      <a class="sidebar-link sidebar-admin-link" href="admin.html" target="_blank" rel="noopener" title="開啟內容編輯後台">
+        <span class="icon">🔐</span><span class="label">後台管理</span>
+      </a>
       <div class="sidebar-footer">HR 作業中心 · 內部版</div>
     `;
   }
