@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>內容編輯後台｜HR 作業中心</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ============ 尚未設定 Firebase 時顯示 ============ -->
+  <div id="notConfiguredView" class="admin-center-screen" style="display:none;">
+    <div class="admin-panel">
+      <h1>⚠️ 尚未設定 Firebase</h1>
+      <p>編輯後台需要連接 Firebase 才能運作。請先完成 <code>js/firebase-config.js</code> 的設定，並依教學建立好 Firestore 資料與登入帳號。</p>
+      <a class="btn btn-primary" href="index.html">回到網站首頁</a>
+    </div>
+  </div>
+
+  <!-- ============ 登入畫面 ============ -->
+  <div id="loginView" class="admin-center-screen" style="display:none;">
+    <div class="admin-panel">
+      <h1>🔐 內容編輯後台</h1>
+      <p>請使用管理員帳號登入，登入後即可編輯各分類的 SOP 內容。</p>
+      <form id="loginForm">
+        <label class="admin-label">Email</label>
+        <input class="admin-input" type="email" id="loginEmail" required autocomplete="username">
+        <label class="admin-label">密碼</label>
+        <input class="admin-input" type="password" id="loginPassword" required autocomplete="current-password">
+        <p id="loginError" class="admin-error" style="display:none;"></p>
+        <button class="btn btn-primary" type="submit" style="width:100%; margin-top: var(--sp-3);">登入</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ 編輯後台主畫面 ============ -->
+  <div id="adminView" class="admin-shell" style="display:none;">
+    <header class="admin-topbar">
+      <div class="admin-topbar-brand">🗄 HR 作業中心 · 內容編輯後台</div>
+      <div class="admin-topbar-actions">
+        <a class="btn btn-ghost btn-sm" href="index.html" target="_blank">前往網站 ↗</a>
+        <span id="loginUserEmail" class="admin-user-email"></span>
+        <button class="btn btn-secondary btn-sm" id="logoutBtn" type="button">登出</button>
+      </div>
+    </header>
+
+    <div class="admin-body-grid">
+      <!-- 左側：分類清單 -->
+      <aside class="admin-sidebar">
+        <div class="admin-sidebar-head">
+          <span>分類列表</span>
+          <button class="cred-btn" id="addCategoryBtn" type="button">＋ 新增分類</button>
+        </div>
+        <ul id="categoryListEl" class="admin-category-list"><!-- 動態產生 --></ul>
+      </aside>
+
+      <!-- 右側：分類編輯區 -->
+      <main class="admin-main">
+        <div id="categoryEditor">
+          <div class="empty-state">
+            <div class="icon">👈</div>
+            <h3>請先從左側選擇一個分類</h3>
+            <p>點選分類後，會在這裡顯示可編輯的表單。</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/firebase-loader.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

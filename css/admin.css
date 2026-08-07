@@ -1,0 +1,175 @@
+/* ======================================================================
+   Admin 編輯後台 — 樣式
+   ----------------------------------------------------------------------
+   沿用 styles.css 的設計 token（顏色／間距／圓角），只新增後台專屬的
+   版面與表單元件樣式。
+   ====================================================================== */
+
+.admin-body { background: var(--color-bg); }
+
+/* ---------- 置中畫面（未設定 / 登入） ---------- */
+.admin-center-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-4);
+}
+.admin-panel {
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--sp-6);
+  box-shadow: var(--shadow-card);
+}
+.admin-panel h1 { font-size: 20px; margin-bottom: var(--sp-2); }
+.admin-panel p { font-size: 14px; color: var(--color-body); margin-bottom: var(--sp-4); }
+
+.admin-label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-caption);
+  margin: var(--sp-3) 0 6px;
+}
+.admin-input,
+.admin-textarea {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  padding: 11px 14px;
+  font-family: inherit;
+  font-size: 14.5px;
+  color: var(--color-title);
+  background: var(--color-surface);
+}
+.admin-input:focus, .admin-textarea:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 4px var(--color-primary-soft); }
+.admin-textarea { min-height: 80px; resize: vertical; line-height: 1.6; }
+.admin-error { font-size: 13px; color: var(--color-danger); margin-top: var(--sp-2); }
+.admin-hint { font-size: 12px; color: var(--color-caption); margin-top: 4px; }
+
+/* ---------- 主畫面骨架 ---------- */
+.admin-shell { min-height: 100vh; display: flex; flex-direction: column; }
+.admin-topbar {
+  height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--sp-5);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+.admin-topbar-brand { font-weight: 700; color: var(--color-title); font-size: 15px; }
+.admin-topbar-actions { display: flex; align-items: center; gap: var(--sp-3); }
+.admin-user-email { font-size: 13px; color: var(--color-caption); }
+
+.admin-body-grid { flex: 1; display: flex; min-height: 0; }
+
+/* ---------- 左側分類清單 ---------- */
+.admin-sidebar {
+  width: 260px; flex-shrink: 0;
+  border-right: 1px solid var(--color-border);
+  background: var(--color-surface);
+  overflow-y: auto;
+}
+.admin-sidebar-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--sp-4); font-size: 13px; font-weight: 700; color: var(--color-caption);
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.admin-category-list { padding: 0 var(--sp-3) var(--sp-4); }
+.admin-category-item {
+  display: flex; align-items: center; gap: var(--sp-2);
+  padding: 10px var(--sp-3); border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 500; color: var(--color-body);
+  cursor: pointer; margin-bottom: 2px;
+}
+.admin-category-item:hover { background: var(--color-bg); }
+.admin-category-item.is-active { background: var(--color-primary-soft); color: var(--color-primary); font-weight: 700; }
+
+/* ---------- 右側編輯區 ---------- */
+.admin-main { flex: 1; overflow-y: auto; padding: var(--sp-6); }
+.admin-section-block {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--sp-5);
+  margin-bottom: var(--sp-4);
+}
+.admin-section-block h2 { font-size: 16px; margin-bottom: var(--sp-3); }
+.admin-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+@media (max-width: 760px) { .admin-field-row { grid-template-columns: 1fr; } }
+
+.admin-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: var(--sp-4); gap: var(--sp-3); flex-wrap: wrap;
+}
+.admin-toolbar h1 { font-size: 22px; }
+
+/* ---------- 卡片（category card）編輯區塊 ---------- */
+.admin-card-block {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-4);
+  margin-bottom: var(--sp-3);
+  background: var(--color-bg);
+}
+.admin-card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: var(--sp-3); gap: var(--sp-3); flex-wrap: wrap;
+}
+.admin-card-head-left { display: flex; align-items: center; gap: var(--sp-2); font-weight: 700; color: var(--color-title); }
+.admin-type-select {
+  border: 1px solid var(--color-border); border-radius: 8px; padding: 6px 10px;
+  font-size: 13px; background: var(--color-surface); color: var(--color-body);
+}
+
+/* ---------- 步驟（STEP）編輯區塊 ---------- */
+.admin-step-block {
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-4);
+  margin-bottom: var(--sp-3);
+  background: var(--color-surface);
+}
+.admin-step-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: var(--sp-3);
+}
+.admin-step-head strong { font-size: 14px; color: var(--color-title); }
+
+/* ---------- 小型列表列（FAQ / 下載 / 圖片） ---------- */
+.admin-row {
+  display: flex; align-items: center; gap: var(--sp-2);
+  margin-bottom: var(--sp-2);
+}
+.admin-row .admin-input { flex: 1; }
+
+/* ---------- 小按鈕 ---------- */
+.admin-btn-icon {
+  width: 30px; height: 30px; flex-shrink: 0;
+  border-radius: 9px; border: 1px solid var(--color-border);
+  background: var(--color-surface); color: var(--color-caption);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; line-height: 1;
+}
+.admin-btn-icon:hover { border-color: var(--color-danger); color: var(--color-danger); }
+.admin-add-link {
+  font-size: 13px; font-weight: 600; color: var(--color-primary);
+  display: inline-flex; align-items: center; gap: 4px; margin-top: 2px;
+}
+
+.admin-save-bar {
+  position: sticky; bottom: 0;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--sp-3) 0;
+  display: flex; justify-content: flex-end; gap: var(--sp-2);
+  margin-top: var(--sp-5);
+}
+
+@media (max-width: 900px) {
+  .admin-body-grid { flex-direction: column; }
+  .admin-sidebar { width: 100%; max-height: 220px; border-right: none; border-bottom: 1px solid var(--color-border); }
+}
